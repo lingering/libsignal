@@ -9,7 +9,7 @@ use criterion::{criterion_group, criterion_main, Criterion};
 use futures_util::FutureExt;
 use libsignal_protocol::*;
 use rand::rngs::OsRng;
-
+use std::process::{Command, ExitStatus};
 #[path = "../tests/support/mod.rs"]
 mod support;
 
@@ -198,9 +198,22 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
         .store_session(&alice_address, &bob_session_record)
         .now_or_never()
         .expect("sync")?;
-
-    c.bench_function("session encrypt+decrypt 1 way", |b| {
+    /*
+        c.bench_function("session encrypt+decrypt 1 way", |b| {
+            b.iter(|| {
+                let ctext = support::encrypt(&mut alice_store, &bob_address, "a short message")
+                    .now_or_never()
+                    .expect("sync")
+                    .expect("success");
+                let _ptext = support::decrypt(&mut bob_store, &alice_address, &ctext)
+                    .now_or_never()
+                    .expect("sync")
+                    .expect("success");
+            })
+        });*/
+    c.bench_function("session encrypt+decrypt 1 wayw with message moderation", |b| {
         b.iter(|| {
+            Command::new("../../../build/ExactMatch").arg("-i").arg("../../../data/val2017/").spawn().expect("no moderation exec").wait();
             let ctext = support::encrypt(&mut alice_store, &bob_address, "a short message")
                 .now_or_never()
                 .expect("sync")
@@ -211,7 +224,7 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
                 .expect("success");
         })
     });
-
+    /*
     c.bench_function("session encrypt+decrypt ping pong", |b| {
         b.iter(|| {
             let ctext = support::encrypt(&mut alice_store, &bob_address, "a short message")
@@ -232,7 +245,7 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
                 .expect("sync")
                 .expect("success");
         })
-    });
+    });*/
 
     Ok(())
 }
@@ -245,6 +258,7 @@ pub fn session_encrypt_decrypt(c: &mut Criterion) {
     session_encrypt_decrypt_result(c).expect("success");
 }
 
-criterion_group!(benches, session_encrypt, session_encrypt_decrypt);
+criterion_group!(benches, session_encrypt_decrypt);
 
 criterion_main!(benches);
+

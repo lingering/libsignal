@@ -39,6 +39,7 @@ sha2 = "0.10"
 subtle = "2.3"
 thiserror = "1.0.30"
 uuid = "1.1.2"
+cxx = "1.0"
 x25519-dalek = { version = "2.0.0", features = ["static_secrets"] }
 
 # WARNING: pqcrypto-kyber 0.8 and 0.7 don't actually coexist, they both depend on the same C symbols.
@@ -67,13 +68,14 @@ prost-build = "0.13.1"
 name = "curve"
 harness = false
 
-#[[bench]]
-#name = "session"
-#harness = false
+[[bench]]
+name = "session"
+harness = false
 
 #[[bench]]
 #name = "ratchet"
 #harness = false
+
 
 
 
