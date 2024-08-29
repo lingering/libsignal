@@ -198,7 +198,7 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
         .store_session(&alice_address, &bob_session_record)
         .now_or_never()
         .expect("sync")?;
-    /*
+    
         c.bench_function("session encrypt+decrypt 1 way", |b| {
             b.iter(|| {
                 let ctext = support::encrypt(&mut alice_store, &bob_address, "a short message")
@@ -210,8 +210,8 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
                     .expect("sync")
                     .expect("success");
             })
-        });*/
-    c.bench_function("session encrypt+decrypt 1 wayw with message moderation", |b| {
+        });
+    c.bench_function("session encrypt+decrypt 1 way with message moderation", |b| {
         b.iter(|| {
             Command::new("../../../build/ExactMatch").arg("-i").arg("../../../data/val2017/").spawn().expect("no moderation exec").wait();
             let ctext = support::encrypt(&mut alice_store, &bob_address, "a short message")
@@ -224,7 +224,7 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
                 .expect("success");
         })
     });
-    /*
+    
     c.bench_function("session encrypt+decrypt ping pong", |b| {
         b.iter(|| {
             let ctext = support::encrypt(&mut alice_store, &bob_address, "a short message")
@@ -245,8 +245,33 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
                 .expect("sync")
                 .expect("success");
         })
-    });*/
+    });
 
+    c.bench_function("session encrypt+decrypt ping pong with image moderation", |b| {
+        b.iter(|| {
+            let ctext = support::encrypt(&mut alice_store, &bob_address, "a short message")
+                .now_or_never()
+                .expect("sync")
+                .expect("success");
+            let  _= Command::new("../../../build/ExactMatch").arg("-i").arg("../../../data/val2017/").spawn().expect("no moderation exec").wait();
+
+            let _ptext = support::decrypt(&mut bob_store, &alice_address, &ctext)
+                .now_or_never()
+                .expect("sync")
+                .expect("success");
+            let ctext = support::encrypt(&mut bob_store, &alice_address, "a short message")
+                .now_or_never()
+                .expect("sync")
+                .expect("success");
+                
+            let  _= Command::new("../../../build/ExactMatch").arg("-i").arg("../../../data/val2017/").spawn().expect("no moderation exec").wait();
+
+            let _ptext = support::decrypt(&mut alice_store, &bob_address, &ctext)
+                .now_or_never()
+                .expect("sync")
+                .expect("success");
+        })
+    });
     Ok(())
 }
 
