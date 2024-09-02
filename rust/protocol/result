@@ -1,0 +1,67 @@
+
+running 55 tests
+test crypto::test::aes_ctr_test ... ignored
+test curve::curve25519::tests::test_agreement ... ignored
+test curve::curve25519::tests::test_random_agreements ... ignored
+test curve::curve25519::tests::test_random_signatures ... ignored
+test curve::curve25519::tests::test_signature ... ignored
+test curve::tests::test_decode_size ... ignored
+test curve::tests::test_large_signatures ... ignored
+test fingerprint::test::fingerprint_encodings ... ignored
+test fingerprint::test::fingerprint_matching_identifiers ... ignored
+test fingerprint::test::fingerprint_mismatching_fingerprints ... ignored
+test fingerprint::test::fingerprint_mismatching_identifiers ... ignored
+test fingerprint::test::fingerprint_mismatching_versions ... ignored
+test fingerprint::test::fingerprint_test_v1 ... ignored
+test fingerprint::test::fingerprint_test_v2 ... ignored
+test identity_key::tests::test_alternate_identity_signing ... ignored
+test identity_key::tests::test_identity_key_from ... ignored
+test identity_key::tests::test_serialize_identity_key_pair ... ignored
+test incremental_mac::test::chunk_size_zero - should panic ... ignored
+test incremental_mac::test::chunk_sizes_sha256 ... ignored
+test incremental_mac::test::chunk_sizes_sha512 ... ignored
+test incremental_mac::test::final_result_should_be_equal_to_non_incremental_hmac ... ignored
+test incremental_mac::test::incremental_macs_are_valid ... ignored
+test incremental_mac::test::produce_and_validate ... ignored
+test incremental_mac::test::simple_test ... ignored
+test incremental_mac::test::total_digest_size_is_never_too_big ... ignored
+test incremental_mac::test::validating_returns_right_size ... ignored
+test incremental_mac::test::validating_simple_test ... ignored
+test kem::tests::test_dyn_parameters_consts ... ignored
+test kem::tests::test_kyber1024_kem ... ignored
+test kem::tests::test_kyber1024_keypair ... ignored
+test kem::tests::test_kyber768_keypair ... ignored
+test kem::tests::test_raw_kem ... ignored
+test kem::tests::test_serialize ... ignored
+test protocol::tests::test_decryption_error_message ... ignored
+test protocol::tests::test_decryption_error_message_for_plaintext ... ignored
+test protocol::tests::test_pre_key_signal_message_serialize_deserialize ... ignored
+test protocol::tests::test_sender_key_message_serialize_deserialize ... ignored
+test protocol::tests::test_signal_message_serialize_deserialize ... ignored
+test ratchet::keys::tests::test_chain_key_derivation ... ignored
+test sealed_sender::sealed_sender_v1::test_agreement_and_authentication ... ignored
+test sealed_sender::sealed_sender_v2::test_agreement_and_authentication ... ignored
+test sealed_sender::test_lossless_round_trip ... ignored
+test sender_keys::sender_key_record_add_sender_key_state_tests::add_second_state ... ignored
+test sender_keys::sender_key_record_add_sender_key_state_tests::add_single_state ... ignored
+test sender_keys::sender_key_record_add_sender_key_state_tests::when_exceed_maximum_states_then_oldest_is_ejected ... ignored
+test sender_keys::sender_key_record_add_sender_key_state_tests::when_second_state_with_different_public_key_but_same_chain_id_added_then_it_gets_replaced ... ignored
+test sender_keys::sender_key_record_add_sender_key_state_tests::when_second_state_with_same_public_key_and_chain_id_added_then_it_becomes_the_most_recent ... ignored
+test sender_keys::sender_key_record_add_sender_key_state_tests::when_second_state_with_same_public_key_and_chain_id_added_then_it_keeps_first_data ... ignored
+test utils::tests::test_constant_time_cmp ... ignored
+test utils::tests::test_ct_is_eq ... ignored
+test utils::tests::test_ct_is_lt ... ignored
+test utils::tests::test_ct_is_zero ... ignored
+test utils::tests::test_div_ceil ... ignored
+test utils::tests::test_div_ceil_isize ... ignored
+test utils::tests::test_div_ceil_panic - should panic ... ignored
+
+test result: ok. 0 passed; 0 failed; 55 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+generation              time:   [46.869 µs 47.523 µs 48.216 µs]
+                        change: [+69.879% +74.383% +79.374%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 6 outliers among 100 measurements (6.00%)
+  2 (2.00%) high mild
+  4 (4.00%) high severe
+

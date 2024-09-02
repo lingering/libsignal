@@ -292,7 +292,7 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
                 .now_or_never()
                 .expect("sync")
                 .expect("success");
-            let _ = Command::new("../../../build/ApproximateMatch").arg("-i").arg("../../../data/val2017/").arg("-t").arg("100").spawn().expect("no moderation exec").wait();
+            let _ = Command::new("../../../build/ApproximateMatch").arg("-i").arg("../../../data/val2017/").arg("-t").arg("6").spawn().expect("no moderation exec").wait();
             let _ptext = support::decrypt(&mut bob_store, &alice_address, &ctext)
                 .now_or_never()
                 .expect("sync")
@@ -301,7 +301,7 @@ pub fn session_encrypt_decrypt_result(c: &mut Criterion) -> Result<(), SignalPro
                 .now_or_never()
                 .expect("sync")
                 .expect("success");
-            let _ = Command::new("../../../build/ApproximateMatch").arg("-i").arg("../../../data/val2017/").arg("-t").arg("100").spawn().expect("no moderation exec").wait();
+            let _ = Command::new("../../../build/ApproximateMatch").arg("-i").arg("../../../data/val2017/").arg("-t").arg("6").spawn().expect("no moderation exec").wait();
             let _ptext = support::decrypt(&mut alice_store, &bob_address, &ctext)
             .now_or_never()
             .expect("sync")
